@@ -40,6 +40,22 @@ public class MyPolynomial {
         }
         return result;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof MyPolynomial)) return false;
+        MyPolynomial myPolynomial = (MyPolynomial)obj;
+        if (coeffs.length != myPolynomial.coeffs.length) return false;
+        for (int i = 0; i < coeffs.length; ++i)
+            if (coeffs[i] != myPolynomial.coeffs[i]) return false;
+            return true;
+    }
+    @Override
+    public int hashCode() {
+        int result = 13;
+        result = 31 * result + Arrays.hashCode(coeffs);
+        return result;
+    }
 
     // New metods
     public int getDegree() {

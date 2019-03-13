@@ -36,6 +36,22 @@ public class Container {
     public String toString() {
         return "Container[(" + x1 + "," + y1 + "),(" + x2 + "," + y2 + ")]";
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Container)) return false;
+        Container container = (Container)obj;
+        return (x1 == container.x1) && (x2 == container.x2) & (y1 == container.y1) && ( y2 == container.y2);
+    }
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + x1;
+        result = 31 * result + x2;
+        result = 31 * result + y1;
+        result = 31 * result + y2;
+        return  result;
+    }
 
     // New metods
     public int getWidth() {
@@ -47,9 +63,9 @@ public class Container {
     public boolean coliders(Ball ball) {
         if (ball == null)
             return false;
-        if (ball.getX() - ball.getRadius() < x1 || x2 < ball.getX() + ball.getRadius())
+        if (Double.compare(ball.getX() - ball.getRadius(), x1) < 0 || Double.compare(x2, ball.getX() + ball.getRadius()) < 0)
             return false;
-        if (ball.getY() - ball.getRadius() < y1 || y2 < ball.getY() + ball.getRadius())
+        if (Double.compare(ball.getY() - ball.getRadius(), y1) < 0 || Double.compare(y2, ball.getY() + ball.getRadius()) < 0)
             return false;
         return true;
     }

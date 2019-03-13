@@ -35,14 +35,14 @@ public class MyComplex {
         return result + imag + "i)";
     }
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MyComplex myComplex = (MyComplex) o;
-        return (myComplex.real == real) && (myComplex.imag == imag);
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof MyComplex)) return false;
+        MyComplex myComplex = (MyComplex)obj;
+        return (Double.compare(real, myComplex.real) == 0) && (Double.compare(imag, myComplex.imag) == 0);
     }
     public boolean equals(double real, double imag) {
-        return (this.real == real) && (this.imag == imag);
+        return (Double.compare(real, this.real) == 0) && (Double.compare(imag, this.imag) == 0);
     }
 
     // New metods

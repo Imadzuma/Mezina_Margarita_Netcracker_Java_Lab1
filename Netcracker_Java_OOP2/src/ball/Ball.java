@@ -54,6 +54,19 @@ public class Ball {
     public String toString() {
         return "Ball[(" + x + "," + y + "),radius=" + radius + ",speed=(" + xDelta +"," + yDelta + ")]";
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Ball)) return false;
+        Ball ball = (Ball)obj;
+        return (radius == ball.radius);
+    }
+    @Override
+    public int hashCode() {
+        int result = 10;
+        result = 31 * result + radius;
+        return result;
+    }
 
     // New metods
     public void move() {

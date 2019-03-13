@@ -1,5 +1,7 @@
 package book;
 
+import java.util.Objects;
+
 public class Author {
     // Fields
     private String name;
@@ -41,5 +43,20 @@ public class Author {
     @Override
     protected Author clone() {
         return new Author(name, email, gender);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof  Author)) return false;
+        Author author = (Author)obj;
+        return (name == author.name) && (email == author.email) && (gender == author.gender);
+    }
+    @Override
+    public int hashCode() {
+        int result = 102;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + email.hashCode();
+        result = 31 * result + gender;
+        return result;
     }
 }

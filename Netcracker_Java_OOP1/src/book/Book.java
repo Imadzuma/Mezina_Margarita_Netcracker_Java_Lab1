@@ -1,5 +1,8 @@
 package book;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Book {
     // Fields
     private String name;
@@ -54,6 +57,25 @@ public class Book {
                 result += ",";
         }
         result += "},price=" + price + ",qty=" + qty + "]";
+        return result;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Book)) return false;
+        Book book = (Book)obj;
+        if ((name != book.name) || (authors.length != book.authors.length))
+            return false;
+        for (int i = 0; i < authors.length; ++i) {
+            if (!authors[i].equals(book.authors[i])) return false;
+        }
+        return true;
+    }
+    @Override
+    public int hashCode() {
+        int result = 10;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + Arrays.hashCode(authors);
         return result;
     }
 

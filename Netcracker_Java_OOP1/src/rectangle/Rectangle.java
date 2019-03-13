@@ -31,6 +31,20 @@ public class Rectangle {
     public String toString() {
         return "rectangle[length=" + length + ",width=" + width + "]";
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Rectangle)) return false;
+        Rectangle rectangle = (Rectangle)obj;
+        return (Float.compare(length, rectangle.length) == 0) && (Float.compare(width, rectangle.width) == 0);
+    }
+    @Override
+    public int hashCode() {
+        int result = 401;
+        result = 31 * result + Float.floatToIntBits(length);
+        result = 31 * result + Float.floatToIntBits(width);
+        return result;
+    }
 
     // New metods
     public double getArea() {

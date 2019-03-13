@@ -1,5 +1,7 @@
 package employee;
 
+import java.util.Objects;
+
 public class Employee {
     // Fields
     private int id;
@@ -36,6 +38,21 @@ public class Employee {
     @Override
     public String toString() {
         return "employee[id=" + id + ",name='" + firstName + ' ' + lastName + ",salary=" + salary + "]";
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Employee))
+            return false;
+        Employee employee = (Employee)obj;
+        return id == employee.id;
+    }
+    @Override
+    public int hashCode(){
+        int result = 103;
+        result = 31 * result + id;
+        return result;
     }
 
     // New metods

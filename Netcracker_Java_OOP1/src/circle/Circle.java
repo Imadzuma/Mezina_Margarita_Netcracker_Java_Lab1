@@ -37,6 +37,20 @@ public class Circle {
     public String toString() {
         return "circle[radius=" + radius + ",color=\"" + color + "\"]";
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Circle)) return false;
+        Circle circle = (Circle)obj;
+        return (Double.compare(radius, circle.radius) == 0) && (color == circle.color);
+    }
+    @Override
+    public int hashCode() {
+        int result = 124;
+        result = 31 * result + (int)Double.doubleToLongBits(radius);
+        result = 31 * result + color.hashCode();
+        return result;
+    }
 
     // New metods
     public double getArea() {
